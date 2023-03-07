@@ -1,4 +1,4 @@
-# **LATIHAN2DPBO2023**
+# **LATIHAN4DPBO2023**
 Buatlah program berbasis OOP menggunakan bahasa pemrograman C++ dan Python  yang mengimplementasikan konsep inheritance, composition, dan array of object pada kelas-kelas tersebut:
 - Mahasiswa: NIM, nama, jenis_kelamin, fakultas, prodi
 - Human: NIK, nama, jenis_kelamin
