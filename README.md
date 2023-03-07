@@ -1,4 +1,4 @@
-# LATIHAN2DPBO2023
+# **LATIHAN2DPBO2023**
 Buatlah program berbasis OOP menggunakan bahasa pemrograman C++ dan Python  yang mengimplementasikan konsep inheritance, composition, dan array of object pada kelas-kelas tersebut:
 - Mahasiswa: NIM, nama, jenis_kelamin, fakultas, prodi
 - Human: NIK, nama, jenis_kelamin
@@ -8,101 +8,36 @@ Buatlah program berbasis OOP menggunakan bahasa pemrograman C++ dan Python  yang
 - Program Studi: nama_prodi, kode, course
 ---
 - -
-Saya Muhammad Fadhillah Nursyawal NIM 2107135 mengerjakan soal Latihan 3 
+Saya Muhammad Fadhillah Nursyawal NIM 2107135 mengerjakan soal Latihan 4 
 dalam mata kuliah Desain Pemrograman Berorientasi Objek 
 untuk keberkahanNya maka saya tidak melakukan kecurangan seperti yang telah dispesifikasikan. Aamiin.
 
 
-## Desain Program
-Program dibuat dalam bahasa `C++`, `Java`, `Python`, dan `PHP`. tiap bahasa mempunyai desain program yang sama (kecuali `PHP`). Program berisi beberapa file kelas, diantaranya:
-1. **Human** > kelas Human
-2. **Mahasiswa** > kelas Mahasiswa
-3. **SivitasAkademik** > kelas Sivitas Akademik
-4. **CRUD** > kelas CRUD, untuk membuat, mengubah, dan menghapus data. data ini akan disimpan dalam variabel list CRUD
-5. **Table** > kelas tabel, untuk membuat dan menampilkan data list dengan tabel  
+## **Desain Program**
+![Alt text](img/UML-latihan-4.png)
 
-terakhir diikuti dengan file `main.` pada program.
+***Catatan:*** *`getter()` pada desain `UML` tersebut merupakan getter dari setiap `atribut` pada setiap `kelas`, selain itu `construktor` dan `destruktor` tidak saya cantumkan dalam desain UML karena sudah pasti ada.*
 
-Tiap kelas memiliki atribut dan methodnya masing masing
+### **Inheritance dan Composite**
+- **SivitasAkademik is a Human:**  
+Sivitas akademik merupakan sekelompok orang yang berinteraksi di lingkungan akademik, jadi saya dapat simpulkan bahwa sivitas akademik `inheritance` terhadap manusia  
+- **Mahasiswa is a SivitasAkademik:**  
+Mahasiswa sudah pasti merupakan sivitas akademik karena mahasiswa sudah dari bagian dari sivitas akademik itu sendiri. jadi dapat disimpulkan bahwa Mahasiswa `inharitance` terhadap sivitas akademik.
+- **Dosen is a SivitasAkademik:**  
+Dosen juga sama merupakan bagian dari sivitas akademik itu sendiri. jadi dosen `inheritance` terhadap sivitas akademik.  
 
-### Atribut
-1. **Human** > `NIK`, `nama`, `jenis_kelamin`
-2. **Mahasiswa** > `NIM`, `nama`, `jenis_kelamin`, `fakultas`, `prodi`
-3. **SivitasAkademik** > `asal_universitas`, `email_edu`
+***Tambahan:*** *Dalam desain terdapat `Multi-level` Inheritance dari `Human` parent yang paling atas lalu ke `SivitasAkademik` childnya dan kebawah lagi yaitu `Mahasiswa` dan `Dosen` yang menjadi Child paling akhir.*
+- **ProgramStudi has a Dosen:**  
+- **ProgramStudi has a Mahasiswa:**
+- **ProgramStudi has a Course:**  
 
-    tiap atribut pada kelas diatas bertipe data `string`, karena tidak perlu proses menghitung jadi semuanya disamakan.
+dari sudut pandang program studi saya menyimpulkan bahwa program studi itu memiliki beberapa dosen, memiliki beberapa mahasiswa, dan memiliki mata kuliah sesuai dengan program studinya. jadi ya kenyataannya seperti itu, jadi ProgramStudi ini `Composite` terhadap Dosen, Mahasiswa, dan Course
 
-4. **CRUD** > 
-    - `data` > bertipe data `vektor/list of class` untuk menyimpan data
-
-5. **Table** >
-    - `headers` > bertipe data `list of string` untuk menyimpan nama variabel dari data
-    - `columnWidths` > bertipe data `list of integer` untuk menyimpan lebar tabel
-    - `border` > bertipe data `string` untuk menyimpan border tabel
-
-### Method
-1. **Human** > 
-2. **Mahasiswa** > 
-3. **SivitasAkademik** > 
-
-    [1, 2, 3] `konstruktor` > atribut diset langsung didalam konstruktor, jadi saat memanggil dalam main harus langsung menyimpan data dalam parameter.
-    ```c++
-    SivitasAkademik sivitas(NIK, nama, jenis_kelamin, NIM, fakultas, prodi, asal_universitas, email_edu);
-    ```
-
-4. **CRUD** > 
-    - `create` > untuk membuat dan menyimpan data ke dalam list
-    - `update` > untuk memperbarui data dari index yang diinput
-    - `remove` / `delete` > untuk menghapus data dari index yang diinput
-    - `getFieldValues` > untuk return data list 2 dimensi dari index dan banyak data, tipe data `list of list`
-
-5. **Table** >
-    - `setHeaders` > untuk menyimpan data variabel untuk dijadikan header
-    ```c++
-    table.setHeaders({"No", "NIK", "Name", "Jenis Kelamin", "NIM", "Fakultas", "Prodi", "Universitas", "Email"});
-    ```
-    - `setBorderTable` > untuk return border table yang sudah dibuat, tipe data `string`
-    - `setWidth` > untuk menyimpdan data lebar tiap kolom tabel
-    ```c++
-    table.setWidths({3, 10, 15, 15, 10, 15, 15, 20, 20});
-    ```
-    - `displayHeaders` > untuk menampilkan header table
-    - `displayData` > untuk menampilkan data table
- 
-**catatan** : *display data menggunakan pola tabel untuk menampilkan data mahasiswa pada method `displayData` dengan `displayHeaders`. tiap baris data terdapat kolom number untuk menandakan data ke berapa, nanti pada saat pilihan menu ubah atau hapus data, user harus menginputkan `number` berapa pada tabel yang akan dioperasikan datanya*
-
-### Inheritance
-Desain program mengimplementasikan konsep `Multi-level Inheritance` pada kelas-kelas utama.
-1. **Human** > sebagai parent dari kelas `Mahasiswa`
-2. **Mahasiswa** > sebagai child dari kelas `Human` dan parent dari kelas `SivitasAkademik`
-1. **SivitasAkademik** > sebagai child dari kelas `Mahasiswa`
-
-`Human` menjadi kelas paling atas karena kelas human menjadi dasar dari kelas `Mahasiswa` dan student mempunyai sebagian atribut yang sama dengan human yaitu nama dan jenis kelamin. alasan lainnya karena mahasiswa merupakan human (manusia).
-
-lalu kelas dari `SivitasAkademik` merupakan child dari kelas `Mahasiswa` karena sivitas akademik memiliki mahasiswa sebagai pelajar
-
-## Penjelasan Alur
-Setiap bahasa mempunyai Alur program yang sama. Setelah melakukan execute program, sistem akan menampilkan menu
-```
-1. Add Student > menambahkan data mahasiswa
-2. Modify Student > mengubah data mahasiswa
-3. Delete Student > menghapus data mahasiswa
-4. Display Student List > menampilkan data mahasiswa dengan tabel
-0. Exit > keluar
-```
-lalu user menginput pilihan menu yang di inginkan. Jika user memilih `-> 1` maka user diminta untuk input data
-
-lalu data berhasil ditambahkan. jika user memilih `-> 4` sistem akan menampilkan data mahasiswa berupa `tabel` (tabel terlampir dalam dokumentasi).
-
-jika user memilih `-> 2` maka user diminta untuk menginput `Number` yang akan diubah datanya. Lalu user diminta untuk menginput data yang baru.
-
-jika user memilih `-> 3` maka user diminta untuk menginput `Number` yang akan dihapus datanya.
+## **Penjelasan Alur**
+Karena data yang dimasukan adalah `Hard Code`, jadi didalam programnya saya sudah memasukan data seperti data Mahasiswa, Dosen, Mata kuliah, Prodi beserta dengan atributnya. lalu data ini digabungkan dalam kelas ProgramStudi, nah ini menjadi objek untuk dimasukan juga kedalam `list` supaya bisa banyak datanya. sehingga saat ditampilkan akan menampilkan data data tersebut, saya mengimputkan jumlah 2 data pada C++ jadi hasilnya dapat dilihat pada gambar.
 
 
 ## Dokumentasi Execute Program (C++)
-- **Diagram UML**  
+- **C++**
 
-![Alt text](img/UML-latihan-3.png)
-- **python**
-
-![Alt text](python/py.png)
+![Alt text](cpp/cpp.png)
